@@ -35,25 +35,23 @@ class OndiskMyItem:
         items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 50, 100]
 
         index = 0
-        for i in items:
-            if i == amount:
-                break
+        for i, v in enumerate(items):
+            if v == amount:
+                index = i;
 
-            index += 1
-
-        if i == items.count():
+        if index == len(items):
             index = 0
 
         if index > 0:
             itemType = 'cnt_4'
-            driver.find_element_by_xpath("//select[@name='" + itemType + "']/option[@value='" + index + "']").click()
+            driver.find_element_by_xpath("//select[@name='" + itemType + "']/option[@value='" + str(index) + "']").click()
             driver.find_element_by_xpath(
                 "//input[@src='https://image.ondisk.co.kr/main/popup/image/item_cash/itembuying_28.gif']").click()
             driver.switch_to.alert.accept()
             driver.switch_to.alert.accept()
 
+
     def buy_item(self, driver):
-        print("여기까지?")
         driver.get("https://ondisk.co.kr/pop.php?mode=popup&sm=item_cash")
 
         myMoney = self.check_money_remaining(driver)

@@ -33,8 +33,8 @@ def main_logic():
 
             webhardManager = WebhardManager(url, driver, account, myPage, myItem, None)
             webhardManager.run()
-        except:
-            print("error")
+        except Exception as e:
+            print(e)
         finally:
             pass
 

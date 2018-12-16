@@ -25,9 +25,6 @@ class WebhardManager:
     def openWebSite(self):
         try:
             self.driver.get(self._webHardUrl)
-
-            print(self._webHardUrl+" 오픈 성공!")
-
         except ConnectionError:
             print("Cannot open website [" + self._webHardUrl + "]")
 
