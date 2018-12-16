@@ -39,8 +39,8 @@ class WebhardManager:
             self.openWebSite()
             self.login()
             self.buy_item()
-            #self.click_contents_up_button()
-            #self.close()
+            self.click_contents_up_button()
+            self.close()
 
         finally:
             self.driver.close()
