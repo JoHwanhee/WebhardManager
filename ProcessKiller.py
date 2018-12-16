@@ -10,4 +10,5 @@ class ProcessKiller:
             os.system("taskkill /f /im chromedriver.exe /t")
             os.system("taskkill /f /im chrome.exe /t")
         elif system == 'Linux':
-            print('구현중..')
+            os.system("killall chromedriver")
+            os.system("killall chrome")
