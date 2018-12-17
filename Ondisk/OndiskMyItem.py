@@ -58,3 +58,4 @@ class OndiskMyItem:
         amount = self.how_many_can_buy_item(myMoney)
 
         self.buy(amount, driver)
+        print('buy_item')

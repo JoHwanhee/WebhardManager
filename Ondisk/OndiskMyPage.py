@@ -12,11 +12,12 @@ class OndiskMyPage:
         driver.get(self.myPageUrl)
         driver.find_element_by_xpath(self.checkboxTag).click()
         driver.find_element_by_xpath(self.upButtonTag).click()
+        print('click_contents_up')
         driver.implicitly_wait(10)
         driver.switch_to.alert.accept()
         driver.switch_to.alert.accept()
         driver.switch_to.alert.accept()
-        print(driver.page_source)
+
 
     def can_find_contents(self, driver):
         return driver.find_element_by_xpath(self.checkboxTag).is_selected()
