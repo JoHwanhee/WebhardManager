@@ -5,22 +5,16 @@ from Ondisk.OndiskMyItem import OndiskMyItem
 from Ondisk.OndiskMyPage import OndiskMyPage
 from WebDriverFactory import WebDriverFactory
 from WebhardManager import WebhardManager
-import threading
-
-global is_run
-is_run = 1
-
-global repeat_tick
-repeat_tick = 60 * 30
+from time import sleep
 
 
 def main_logic():
     setting = AppSetting('AppSetting.ini')
     driverPath = setting.webDriverPath
 
-    nowHour = datetime.now().hour;
+    nowHour = datetime.now().hour
     print(nowHour)
-    if 2 <= nowHour <= 24:
+    if 18 <= nowHour <= 24:
         try:
             url = setting.ondiskUrl
             print(url)
@@ -38,15 +32,10 @@ def main_logic():
         finally:
             pass
 
-    timer = threading.Timer(repeat_tick, main_logic)
-    if is_run == 1:
-        timer.start()
-    else:
-        timer.cancel()
 
+while 1:
+    main_logic()
+    sleep(10)
 
-main_logic()
-a = input("Press any key to exit")
-is_run = 0
 
 print("exited")
