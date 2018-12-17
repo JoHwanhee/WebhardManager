@@ -4,7 +4,7 @@ import platform
 
 class ProcessKiller:
     def kill_chrome(self):
-        print("프로새ㅔ스들 킬 합니다.")
+        print("Kill the processes for chrome")
         system = platform.system()
         if system == 'Windows':
             os.system("taskkill /f /im chromedriver.exe /t")

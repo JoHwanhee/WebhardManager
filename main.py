@@ -1,11 +1,12 @@
+import threading
 from _datetime import datetime
+
 from AppSetting import AppSetting
 from Ondisk.OndiskAccount import OndiskAccount
 from Ondisk.OndiskMyItem import OndiskMyItem
 from Ondisk.OndiskMyPage import OndiskMyPage
 from WebDriverFactory import WebDriverFactory
 from WebhardManager import WebhardManager
-from time import sleep
 
 
 def main_logic():
@@ -13,11 +14,9 @@ def main_logic():
     driverPath = setting.webDriverPath
 
     nowHour = datetime.now().hour
-    print(nowHour)
-    if 18 <= nowHour <= 24:
+    if 18 >= nowHour or nowHour <= 9:
         try:
             url = setting.ondiskUrl
-            print(url)
             driver = WebDriverFactory(driverPath).createChromeDriver()
             account = OndiskAccount(setting.ondiskId, setting.ondiskIdXpath, setting.ondiskPw, setting.ondiskPwXpath,
                                     setting.ondiskLoginXpath)
@@ -32,10 +31,8 @@ def main_logic():
         finally:
             pass
 
-
-while 1:
-    main_logic()
-    sleep(10)
+    timer = threading.Timer(120, main_logic)
+    timer.start()
 
 
-print("exited")
+main_logic()
